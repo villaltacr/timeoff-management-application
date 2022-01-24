@@ -14,7 +14,7 @@
 # 4. Login to running container (to update config (vi config/app.json): 
 #	docker exec -ti --user root alpine_timeoff /bin/sh
 # --------------------------------------------------------------------
-FROM node:17-alpine3.14
+FROM alpine:3.15
 
 EXPOSE 3000
 
@@ -25,7 +25,7 @@ RUN apk add --no-cache \
     git \
     make \
     nodejs npm \
-    python3 \
+    python2 \
     vim
     
 RUN adduser --system app --home /app
