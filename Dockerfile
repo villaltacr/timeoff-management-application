@@ -14,7 +14,7 @@
 # 4. Login to running container (to update config (vi config/app.json): 
 #	docker exec -ti --user root alpine_timeoff /bin/sh
 # --------------------------------------------------------------------
-FROM ubuntu:18.04
+FROM node:17-alpine3.14
 
 EXPOSE 3000
 
