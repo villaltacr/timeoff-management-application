@@ -30,10 +30,18 @@ RUN apk add --no-cache \
     
 RUN adduser --system app --home /app
 USER app
+
+#WORKDIR /app
+#RUN git clone https://github.com/villaltacr/timeoff-management-application.git
+#WORKDIR /app/timeoff-management
+
+
 WORKDIR /app
-RUN git clone https://github.com/villaltacr/timeoff-management-application.git
-WORKDIR /app/timeoff-management
+
+COPY ["package.json", "package-lock.json*", "./"]
 
 RUN npm install
+
+COPY . .
 
 CMD npm start
