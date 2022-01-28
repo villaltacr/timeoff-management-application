@@ -1,42 +1,27 @@
-# -------------------------------------------------------------------
-# Minimal dockerfile from alpine base
-#
-# Instructions:
-# =============
-# 1. Create an empty directory and copy this file into it.
-#
-# 2. Create image with: 
-#	docker build --tag timeoff:latest .
-#
-# 3. Run with: 
-#	docker run -d -p 3000:3000 --name alpine_timeoff timeoff
-#
-# 4. Login to running container (to update config (vi config/app.json): 
-#	docker exec -ti --user root alpine_timeoff /bin/sh
-# --------------------------------------------------------------------
-FROM node:17-alpine3.14
+FROM node:14-alpine
 
-
-LABEL org.label-schema.schema-version="1.0"
-LABEL org.label-schema.docker.cmd="docker run -d -p 3000:3000 --name alpine_timeoff"
-
-RUN apk add --no-cache \
+RUN apk add --no-cache  \
     git \
     make \
-    nodejs npm yarn \
-    python2 \
+    npm nodejs yarn \
+    python3 \
+    sqlite\
     vim
     
-RUN adduser --system app --home /app
+
+
+RUN mkdir -p /home/node/app/timeoff-management/node_modules && chown -R node:node /home/node/app/timeoff-management
+WORKDIR /home/node/app/timeoff-management
+
+
+
 USER root
-WORKDIR /app/timeoff-management
 
-COPY package*.json ./
-RUN yarn install
+COPY . /home/node/app/timeoff-management/
+RUN cd /home/node/app/timeoff-management/
+RUN yarn add sqlite3
+RUN yarn 
 
-
-
-
-COPY . .
 EXPOSE 3000
-CMD  yarn start
+CMD yarn start 
+
