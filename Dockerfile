@@ -14,9 +14,8 @@
 # 4. Login to running container (to update config (vi config/app.json): 
 #	docker exec -ti --user root alpine_timeoff /bin/sh
 # --------------------------------------------------------------------
-FROM alpine:3.15
+FROM node:17-alpine3.14
 
-EXPOSE 3000
 
 LABEL org.label-schema.schema-version="1.0"
 LABEL org.label-schema.docker.cmd="docker run -d -p 3000:3000 --name alpine_timeoff"
@@ -24,24 +23,20 @@ LABEL org.label-schema.docker.cmd="docker run -d -p 3000:3000 --name alpine_time
 RUN apk add --no-cache \
     git \
     make \
-    nodejs npm \
-    python3 \
+    nodejs npm yarn \
+    python2 \
     vim
     
 RUN adduser --system app --home /app
-USER app
+USER root
+WORKDIR /app/timeoff-management
 
-#WORKDIR /app
-#RUN git clone https://github.com/villaltacr/timeoff-management-application.git
-#WORKDIR /app/timeoff-management
+COPY package*.json ./
+RUN yarn install
 
 
-WORKDIR /app
 
-COPY ["package.json", "package-lock.json*", "./"]
-
-RUN npm install
 
 COPY . .
-
-CMD npm start
+EXPOSE 3000
+CMD  yarn start
