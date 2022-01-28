@@ -47,6 +47,7 @@
     "chai": "^2.2.0",
     "mocha": "^6.2.2",
     "node-sass": "^4.5.3",
+    "node-pre-gyp": "0.12.0",
     "request-promise": "^4.2.2",
     "selenium-webdriver": "2.53.3"
   },
@@ -56,7 +57,7 @@
     "db-update": "node node_modules/.bin/sequelize db:migrate --config=config/db.json --models-path=lib/model/db/",
     "carry-over-allowance": "node bin/calculate_carry_over_allowance_for_all_users.js",
     "compile-sass": "node node_modules/node-sass/bin/node-sass scss/main.scss public/css/style.css",
-    "preinstall": "npx npm-force-resolutions"
+    "preinstall": "npx force-resolutions"
   },
   "resolutions": {
     "graceful-fs": "^4.2.4"
