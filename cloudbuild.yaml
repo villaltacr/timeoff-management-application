@@ -2,7 +2,7 @@
 steps:
 - name: 'gcr.io/cloud-builders/docker'
   args: ['build', '-t', 'gcr.io/timeoff-management:$SHORT_SHA', '.']
-- name: 'gcr.io/cloud-builders/docker'
+- name: 'gcr.io/cloud-push/docker'
   args: ['push', 'gcr.io/gl-test-339218/docker-repo/timeoff-management:$SHORT_SHA']
-- name: 'gcr.io/cloud-builders/gcloud'
+- name: 'gcr.io/cloud-deploy/gcloud'
   args: ['beta', 'run', 'deploy', 'cloud-run-continuous-deployment', '--image=gcr.io/gl-test-339218/docker-repo/timeoff-management:$SHORT_SHA', '--region=us-east1']
