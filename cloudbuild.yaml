@@ -1,5 +1,5 @@
   
-  steps:
+steps:
 - name: 'gcr.io/cloud-builders/docker'
   args: ['build', '-t', 'gcr.io/timeoff-management:$SHORT_SHA', '.']
 - name: 'gcr.io/cloud-builders/docker'
