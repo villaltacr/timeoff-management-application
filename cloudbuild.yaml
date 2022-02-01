@@ -17,7 +17,7 @@
       - "deploy"
       - "timeoff"
       - "--image"
-      - "gcr.io/$PROJECT_ID/timeoff:$SHORT_SHA"
+      - "gcr.io/gl-test-339218/docker-repo/timeoff:$SHORT_SHA"
       - "--region"
       - "us-east1"
   images:
