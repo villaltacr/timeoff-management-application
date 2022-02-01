@@ -8,7 +8,7 @@
         ".",
       ]
   - name: "gcr.io/cloud-builders/docker"
-    args: ["push", "us-east1-docker.pkg.dev/gl-test-339218/docker-repo/timeoff"]
+    args: ["push", "us-east1-docker.pkg.dev/gl-test-339218/docker-repo/timeoff:$SHORT_SHA"]
   # Deploy container image to Cloud Run
   - name: "gcr.io/google.com/cloudsdktool/cloud-sdk"
     entrypoint: gcloud
@@ -21,4 +21,4 @@
       - "--region"
       - "us-east1"
   images:
-  - "gcr.io/gl-test-339218/docker-repo/timeoff:$SHORT_SHA"
+  - "gcr.io/us-east1-docker.pkg.dev/gl-test-339218/docker-repo/timeoff:$SHORT_SHA"
