@@ -10,12 +10,12 @@ steps:
 - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
   entrypoint: gcloud
   args:
-   - 'run'
-   - 'deploy'
-   - 'timeoff'
-   - '--image'
-   - 'gcr.io/$PROJECT_ID/timeoff:$SHORT_SHA'
-   - '--region'
-   - 'us-east1'
+- 'run'
+- 'deploy'
+- 'timeoff'
+- '--image'
+- 'gcr.io/$PROJECT_ID/timeoff:$SHORT_SHA'
+- '--region'
+- 'us-east1'
  images:
- - 'gcr.io/$PROJECT_ID/timeoff:$SHORT_SHA'
+- 'gcr.io/$PROJECT_ID/timeoff:$SHORT_SHA'
