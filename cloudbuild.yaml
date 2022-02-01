@@ -2,9 +2,9 @@
 steps:
 
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'us-east1-docker.pkg.dev/$(PROJECT_ID)/docker-repo/timeoff:$SHORT_SHA', '.']
+  args: ['build', '-t', 'us-east1-docker.pkg.dev/gl-test-339218/docker-repo/timeoff:$SHORT_SHA', '.']
 - name: 'gcr.io/cloud-builders/docker'
   args: ['push', 
-           'us-east1-docker.pkg.dev/${PROJECT_ID}/docker-repo/timeoff']
+           'us-east1-docker.pkg.dev/gl-test-339218/docker-repo/timeoff']
 - name: 'gcr.io/cloud-deploy/gcloud'
   args: ['beta', 'run', 'deploy', 'cloud-run-continuous-deployment', '--image=gcr.io/gl-test-339218/docker-repo/timeoff:$SHORT_SHA', '--region=us-east1']
