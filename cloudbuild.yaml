@@ -1,21 +1,24 @@
-  
-steps:
-
-- name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'us-east1-docker.pkg.dev/gl-test-339218/docker-repo/timeoff:$SHORT_SHA', '.']
-- name: 'gcr.io/cloud-builders/docker'
-  args: ['push', 
-           'us-east1-docker.pkg.dev/gl-test-339218/docker-repo/timeoff']
-# Deploy container image to Cloud Run
-- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-  entrypoint: gcloud
-  args:
-  - 'run'
-  - 'deploy'
-  - 'timeoff'
-  - '--image'
-  - 'gcr.io/$PROJECT_ID/timeoff:$SHORT_SHA'
-  - '--region'
-  - 'us-east1'
-images:
-- 'gcr.io/$PROJECT_ID/timeoff:$SHORT_SHA'
+  steps:
+  - name: "gcr.io/cloud-builders/docker"
+    args:
+      [
+        "build",
+        "-t",
+        "us-east1-docker.pkg.dev/gl-test-339218/docker-repo/timeoff:$SHORT_SHA",
+        ".",
+      ]
+  - name: "gcr.io/cloud-builders/docker"
+    args: ["push", "us-east1-docker.pkg.dev/gl-test-339218/docker-repo/timeoff"]
+  # Deploy container image to Cloud Run
+  - name: "gcr.io/google.com/cloudsdktool/cloud-sdk"
+    entrypoint: gcloud
+    args:
+      - "run"
+      - "deploy"
+      - "timeoff"
+      - "--image"
+      - "gcr.io/$PROJECT_ID/timeoff:$SHORT_SHA"
+      - "--region"
+      - "us-east1"
+  images:
+  - "gcr.io/$PROJECT_ID/timeoff:$SHORT_SHA"
